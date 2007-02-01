@@ -35,10 +35,12 @@ ExclusiveArch:	alpha arm %{ix86} %{x8664} mips powerpc ppc sparc sparcv9 sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Atheros WiFi card driver. 
+Atheros WiFi card driver. It uses OpenHAL and supports AR5210, AR5211, AR5212 and 
+RF5110/1/2 cards.
 
 %description -l pl
-Sterownik karty radiowej Atheros.
+Sterownik karty radiowej Atheros. U¿ywa OpenHAL i obs³uguje karty z uk³adami AR5210,
+AR5211, AR5212 i RF5110/1/2.
 
 %package devel
 Summary:	Header files for madwifi
