@@ -35,11 +35,10 @@ ExclusiveArch:	alpha arm %{ix86} %{x8664} mips powerpc ppc sparc sparcv9 sparc64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Atheros WiFi card driver. Supports Virtual APs and WDS Mode.
+Atheros WiFi card driver. 
 
 %description -l pl
-Sterownik karty radiowej Atheros. Wspiera tryb wirtualnego AP oraz
-tryb WDS.
+Sterownik karty radiowej Atheros.
 
 %package devel
 Summary:	Header files for madwifi
