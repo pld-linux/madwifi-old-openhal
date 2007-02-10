@@ -8,11 +8,11 @@
 #
 %define		snap_year	2007
 %define		snap_month	02
-%define		snap_day	07
+%define		snap_day	08
 %define		snap	%{snap_year}%{snap_month}%{snap_day}
 %define		snapdate	%{snap_year}-%{snap_month}-%{snap_day}
 %define		_rel	0.%{snap}.1
-%define		trunk	r2087
+%define		trunk	r2089
 Summary:	Atheros WiFi card driver
 Summary(pl):	Sterownik karty radiowej Atheros
 Name:		madwifi-old-openhal
@@ -24,7 +24,7 @@ Provides:	madwifi
 Obsoletes:	madwifi
 # http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2087-20070207.tar.gz
 Source0:	http://snapshots.madwifi.org/madwifi-old-openhal/%{name}-%{trunk}-%{snap}.tar.gz
-# Source0-md5:	6ed153ed47366f1276a6d85721a8c4e7
+# Source0-md5:	98d9fb694e009366567591116a005489
 URL:		http://www.madwifi.org/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
@@ -106,7 +106,7 @@ Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 %if %{with userspace}
 %{__make} -C tools \
 	CC="%{__cc}" \
-	CFLAGS="-include include/compat.h -\$(INCS) %{rpmcflags}" \
+	CFLAGS="%{rpmcflags}" \
 	KERNELCONF="%{_kernelsrcdir}/config-up"
 %endif
 
