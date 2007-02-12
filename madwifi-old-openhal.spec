@@ -14,7 +14,7 @@
 %define		_rel	0.%{snap}.1
 %define		trunk	r2089
 Summary:	Atheros WiFi card driver
-Summary(pl):	Sterownik karty radiowej Atheros
+Summary(pl.UTF-8):   Sterownik karty radiowej Atheros
 Name:		madwifi-old-openhal
 Version:	0
 Release:	%{_rel}
@@ -38,13 +38,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Atheros WiFi card driver. It uses OpenHAL and supports AR5210, AR5211, AR5212 and 
 RF5110/1/2 cards.
 
-%description -l pl
-Sterownik karty radiowej Atheros. Uøywa OpenHAL i obs≥uguje karty z uk≥adami AR5210,
+%description -l pl.UTF-8
+Sterownik karty radiowej Atheros. U≈ºywa OpenHAL i obs≈Çuguje karty z uk≈Çadami AR5210,
 AR5211, AR5212 i RF5110/1/2.
 
 %package devel
 Summary:	Header files for madwifi
-Summary(pl):	Pliki nag≥Ûwkowe dla madwifi
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe dla madwifi
 Group:		Development/Libraries
 Provides:	madwifi-devel
 Obsoletes:	madwifi-devel
@@ -52,14 +52,14 @@ Obsoletes:	madwifi-devel
 %description devel
 Header files for madwifi.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe dla madwifi.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe dla madwifi.
 
 # kernel subpackages.
 
 %package -n kernel%{_alt_kernel}-net-madwifi-old-openhal
 Summary:	Linux driver for Atheros cards
-Summary(pl):	Sterownik dla Linuksa do kart Atheros
+Summary(pl.UTF-8):   Sterownik dla Linuksa do kart Atheros
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -73,14 +73,14 @@ This is driver for Atheros card for Linux.
 
 This package contains Linux module.
 
-%description -n kernel%{_alt_kernel}-net-madwifi-old-openhal -l pl
+%description -n kernel%{_alt_kernel}-net-madwifi-old-openhal -l pl.UTF-8
 Sterownik dla Linuksa do kart Atheros.
 
-Ten pakiet zawiera modu≥ j±dra Linuksa.
+Ten pakiet zawiera modu≈Ç jƒÖdra Linuksa.
 
 %package -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
 Summary:	Linux SMP driver for %{name} cards
-Summary(pl):	Sterownik dla Linuksa SMP do kart %{name}
+Summary(pl.UTF-8):   Sterownik dla Linuksa SMP do kart %{name}
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -94,10 +94,10 @@ This is driver for Atheros cards for Linux.
 
 This package contains Linux SMP module.
 
-%description -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal -l pl
+%description -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal -l pl.UTF-8
 Sterownik dla Linuksa do kart Atheros.
 
-Ten pakiet zawiera modu≥ j±dra Linuksa SMP.
+Ten pakiet zawiera modu≈Ç jƒÖdra Linuksa SMP.
 
 %prep
 %setup -q -n %{name}-%{trunk}-%{snap}
