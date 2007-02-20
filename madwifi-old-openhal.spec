@@ -8,11 +8,11 @@
 #
 %define		snap_year	2007
 %define		snap_month	02
-%define		snap_day	08
+%define		snap_day	16
 %define		snap	%{snap_year}%{snap_month}%{snap_day}
 %define		snapdate	%{snap_year}-%{snap_month}-%{snap_day}
 %define		_rel	0.%{snap}.1
-%define		trunk	r2089
+%define		trunk	r2121
 Summary:	Atheros WiFi card driver
 Summary(pl.UTF-8):	Sterownik karty radiowej Atheros
 Name:		madwifi-old-openhal
@@ -22,9 +22,9 @@ License:	GPL/BSD
 Group:		Base/Kernel
 Provides:	madwifi
 Obsoletes:	madwifi
-# http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2087-20070207.tar.gz
+# http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2121-20070216.tar.gz
 Source0:	http://snapshots.madwifi.org/madwifi-old-openhal/%{name}-%{trunk}-%{snap}.tar.gz
-# Source0-md5:	98d9fb694e009366567591116a005489
+# Source0-md5:	e6c4bc83ff9a1822fc52d04eeb24ca7e
 URL:		http://www.madwifi.org/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
