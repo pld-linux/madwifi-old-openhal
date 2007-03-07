@@ -11,7 +11,7 @@
 %define		snap_day	25
 %define		snap	%{snap_year}%{snap_month}%{snap_day}
 %define		snapdate	%{snap_year}-%{snap_month}-%{snap_day}
-%define		_rel	0.%{snap}.1
+%define		_rel	0.%{snap}.2
 %define		trunk	r2157
 Summary:	Atheros WiFi card driver
 Summary(pl.UTF-8):	Sterownik karty radiowej Atheros
@@ -25,6 +25,8 @@ Obsoletes:	madwifi
 # http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2157-20070225.tar.gz
 Source0:	http://snapshots.madwifi.org/madwifi-old-openhal/%{name}-%{trunk}-%{snap}.tar.gz
 # Source0-md5:	720045374d0df8bc88e6c75c0a6ade00
+# needed when build against (more noisy) pax enabled kernel
+Patch0:		%{name}-werror.patch
 URL:		http://www.madwifi.org/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
@@ -101,6 +103,7 @@ Ten pakiet zawiera moduł jądra Linuksa SMP.
 
 %prep
 %setup -q -n %{name}-%{trunk}-%{snap}
+%patch0 -p1
 
 %build
 %if %{with userspace}
