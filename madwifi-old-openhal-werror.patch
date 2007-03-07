@@ -1,0 +1,18 @@
+diff -NurpP --minimal madwifi-old-openhal-r2157-20070225.orig/Makefile.inc madwifi-old-openhal-r2157-20070225/Makefile.inc
+--- madwifi-old-openhal-r2157-20070225.orig/Makefile.inc	2007-03-07 13:37:19.000000000 +0100
++++ madwifi-old-openhal-r2157-20070225/Makefile.inc	2007-03-07 13:45:11.000000000 +0100
+@@ -134,7 +134,13 @@ endif
+ # 
+ TOOLS=  $(TOP)/tools 
+ 
+-COPTS+=	-Werror
++#
++# -Werror breaks build on pax enabled kernels which produces more warning 
++# options during build process than the vanilla kernels. 
++# CFLAGS of pax enabled kernels include -W -Wno-unused -Wno-sign-compare 
++#
++# COPTS+=	-Werror
++
+ INCS=	-include $(TOP)/include/compat.h -I$(TOP)/include
+ 
+ 
