@@ -2,17 +2,16 @@
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
-%bcond_without	smp		# don't build SMP module
 %bcond_without	userspace	# don't build userspace module
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		snap_year	2007
-%define		snap_month	02
-%define		snap_day	25
+%define		snap_month	05
+%define		snap_day	24
 %define		snap	%{snap_year}%{snap_month}%{snap_day}
 %define		snapdate	%{snap_year}-%{snap_month}-%{snap_day}
-%define		_rel	0.%{snap}.2
-%define		trunk	r2157
+%define		_rel	0.%{snap}.1
+%define		trunk	r2365
 Summary:	Atheros WiFi card driver
 Summary(pl.UTF-8):	Sterownik karty radiowej Atheros
 Name:		madwifi-old-openhal
@@ -22,9 +21,9 @@ License:	GPL/BSD
 Group:		Base/Kernel
 Provides:	madwifi
 Obsoletes:	madwifi
-# http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2157-20070225.tar.gz
+# http://snapshots.madwifi.org/madwifi-old-openhal/madwifi-old-openhal-r2365-20070524.tar.gz
 Source0:	http://snapshots.madwifi.org/madwifi-old-openhal/%{name}-%{trunk}-%{snap}.tar.gz
-# Source0-md5:	720045374d0df8bc88e6c75c0a6ade00
+# Source0-md5:	97f45d92f11638a7637a41620177852f
 # needed when build against (more noisy) pax enabled kernel
 Patch0:		%{name}-werror.patch
 URL:		http://www.madwifi.org/
@@ -66,8 +65,8 @@ Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
-%requires_releq_kernel_up
-Requires(postun):	%releq_kernel_up
+%requires_releq_kernel
+Requires(postun):	%releq_kernel
 %endif
 
 %description -n kernel%{_alt_kernel}-net-madwifi-old-openhal
@@ -80,27 +79,6 @@ Sterownik dla Linuksa do kart Atheros.
 
 Ten pakiet zawiera moduł jądra Linuksa.
 
-%package -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
-Summary:	Linux SMP driver for %{name} cards
-Summary(pl.UTF-8):	Sterownik dla Linuksa SMP do kart %{name}
-Release:	%{_rel}@%{_kernel_ver_str}
-Group:		Base/Kernel
-Requires(post,postun):	/sbin/depmod
-%if %{with dist_kernel}
-%requires_releq_kernel_smp
-Requires(postun):	%releq_kernel_smp
-%endif
-
-%description -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
-This is driver for Atheros cards for Linux.
-
-This package contains Linux SMP module.
-
-%description -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal -l pl.UTF-8
-Sterownik dla Linuksa do kart Atheros.
-
-Ten pakiet zawiera moduł jądra Linuksa SMP.
-
 %prep
 %setup -q -n %{name}-%{trunk}-%{snap}
 %patch0 -p1
@@ -110,7 +88,7 @@ Ten pakiet zawiera moduł jądra Linuksa SMP.
 %{__make} -C tools \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}" \
-	KERNELCONF="%{_kernelsrcdir}/config-up"
+	KERNELCONF="%{_kernelsrcdir}/config-dist"
 %endif
 
 %if %{with kernel}
@@ -149,7 +127,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install-tools \
 	TARGET=%{target} \
-	KERNELCONF="%{_kernelsrcdir}/config-up" \
+	KERNELCONF="%{_kernelsrcdir}/config-dist" \
 	KERNELPATH="%{_kernelsrcdir}" \
 	DESTDIR=$RPM_BUILD_ROOT \
 	BINDIR=%{_bindir} \
@@ -175,12 +153,6 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n kernel%{_alt_kernel}-net-madwifi-old-openhal
 %depmod %{_kernel_ver}
 
-%post	-n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
-%depmod %{_kernel_ver}smp
-
-%postun	-n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
-%depmod %{_kernel_ver}smp
-
 %if %{with userspace}
 %files
 %defattr(644,root,root,755)
@@ -197,10 +169,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{_alt_kernel}-net-madwifi-old-openhal
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/kernel/net/*.ko*
-
-%if %{with smp} && %{with dist_kernel}
-%files -n kernel%{_alt_kernel}-smp-net-madwifi-old-openhal
-%defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}smp/kernel/net/*.ko*
-%endif
 %endif
