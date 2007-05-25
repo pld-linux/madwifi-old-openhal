@@ -1,18 +1,11 @@
-diff -NurpP --minimal madwifi-old-openhal-r2157-20070225.orig/Makefile.inc madwifi-old-openhal-r2157-20070225/Makefile.inc
---- madwifi-old-openhal-r2157-20070225.orig/Makefile.inc	2007-03-07 13:37:19.000000000 +0100
-+++ madwifi-old-openhal-r2157-20070225/Makefile.inc	2007-03-07 13:45:11.000000000 +0100
-@@ -134,7 +134,13 @@ endif
- # 
+--- madwifi-ng-r2308-20070504.a/Makefile.inc	2007-04-26 06:08:01.000000000 +0200
++++ madwifi-ng-r2308-20070504.b/Makefile.inc	2007-05-04 23:59:07.000000000 +0200
+@@ -147,7 +147,7 @@
  TOOLS=  $(TOP)/tools 
  
--COPTS+=	-Werror
-+#
-+# -Werror breaks build on pax enabled kernels which produces more warning 
-+# options during build process than the vanilla kernels. 
-+# CFLAGS of pax enabled kernels include -W -Wno-unused -Wno-sign-compare 
-+#
-+# COPTS+=	-Werror
-+
+ WARNINGS = -Werror
+-COPTS+= $(WARNINGS)
++#COPTS+= $(WARNINGS)
  INCS=	-include $(TOP)/include/compat.h -I$(TOP)/include
  
- 
+ # TARGET defines the target platform architecture. It must match one of
